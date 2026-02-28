@@ -1,8 +1,21 @@
 const prerender = require('prerender');
+const { execSync } = require('child_process');
 
 const port = process.env.PORT || 3000;
 
-const server = prerender({
+// Auto-detect Puppeteer's bundled Chromium
+let chromeLocation = process.env.CHROME_LOCATION || '';
+if (!chromeLocation) {
+  try {
+    const puppeteer = require('puppeteer');
+    chromeLocation = puppeteer.executablePath();
+    console.log(`[CHROME] Found Puppeteer Chromium at: ${chromeLocation}`);
+  } catch (e) {
+    console.warn('[CHROME] Puppeteer not found, falling back to system Chrome');
+  }
+}
+
+const config = {
   port: port,
   // Chromium flags for server environment (no GUI)
   chromeFlags: [
@@ -16,7 +29,13 @@ const server = prerender({
     '--single-process',
     '--disable-extensions',
   ],
-});
+};
+
+if (chromeLocation) {
+  config.chromeLocation = chromeLocation;
+}
+
+const server = prerender(config);
 
 // Enable in-memory cache
 // Pages are cached for CACHE_TTL seconds (default: 24 hours)
