@@ -1,0 +1,16 @@
+{
+  "name": "prerender-server",
+  "version": "1.0.0",
+  "description": "Self-hosted prerender server for SPA SEO. Renders JavaScript-heavy pages and serves static HTML to search engine bots.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step needed'"
+  },
+  "dependencies": {
+    "prerender": "^5.25.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
