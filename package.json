@@ -8,7 +8,7 @@
     "build": "echo 'No build step needed'"
   },
   "dependencies": {
-    "prerender": "^5.25.3"
+    "prerender": "^5.21.6"
   },
   "engines": {
     "node": ">=18"
