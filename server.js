@@ -108,16 +108,9 @@ app.get('/health', async (req, res) => {
   }
 });
 
-// Launch browser at startup, then start HTTP server
-getBrowser()
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Prerender server running on port ${port}`);
-      console.log(`Test: http://localhost:${port}/render?url=https://example.com`);
-      console.log(`Health: http://localhost:${port}/health`);
-    });
-  })
-  .catch((err) => {
-    console.error('[FATAL] Could not launch Chrome:', err.message);
-    process.exit(1);
-  });
+// Start HTTP server immediately, Chrome launches on first request
+app.listen(port, () => {
+  console.log(`Prerender server running on port ${port}`);
+  console.log(`Test: http://localhost:${port}/render?url=https://example.com`);
+  console.log(`Health: http://localhost:${port}/health`);
+});
