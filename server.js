@@ -25,8 +25,6 @@ const config = {
     '--disable-dev-shm-usage',
     '--disable-setuid-sandbox',
     '--no-first-run',
-    '--no-zygote',
-    '--single-process',
     '--disable-extensions',
   ],
 };
