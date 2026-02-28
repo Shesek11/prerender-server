@@ -4,7 +4,7 @@
   "description": "Self-hosted prerender server for SPA SEO. Renders JavaScript-heavy pages and serves static HTML to search engine bots.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "LD_LIBRARY_PATH=$HOME/chrome-libs/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH node server.js",
     "build": "echo 'No build step needed'"
   },
   "dependencies": {
