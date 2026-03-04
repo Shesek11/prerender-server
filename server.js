@@ -37,6 +37,17 @@ const ttl = parseInt(process.env.CACHE_TTL || '86400', 10) * 1000;
 
 const app = express();
 
+app.get('/', (req, res) => {
+  res.json({
+    name: 'prerender-server',
+    version: '2.0.0',
+    endpoints: {
+      health: '/health',
+      render: '/render?url=<URL>',
+    },
+  });
+});
+
 app.get('/render', async (req, res) => {
   const url = req.query.url;
   if (!url) {
